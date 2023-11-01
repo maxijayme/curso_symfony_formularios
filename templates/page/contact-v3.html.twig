@@ -18,6 +18,7 @@
         })
     }}
         {{ form_widget(form)}}
+        {% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
         {# {{ form_errors(form)}}
         {{ form_row (form.message,{
             'label': 'Comentarios o sugerencias',
