@@ -20,6 +20,10 @@ class Post
     #[ORM\Column(type: Types::TEXT)]
     private ?string $Message = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?category $category = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +49,18 @@ class Post
     public function setMessage(string $Message): static
     {
         $this->Message = $Message;
+
+        return $this;
+    }
+
+    public function getCategory(): ?category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
