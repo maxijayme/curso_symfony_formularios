@@ -3,6 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Post;
+use App\Entity\Category;
+
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -11,25 +14,33 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('category', ChoiceType::class, [
+            // ->add('category', ChoiceType::class, [
+            //     'label' => 'Categorías',
+            //     'placeholder' => 'Selecciona una ...',
+            //     'choices' =>[                
+            //         'Lenguage' => ['PHP' => 'php'],
+            //         'Framework' => [
+            //             'Laravel' => 'laravel',
+            //             'Symfony' => 'symfony'
+            //         ]
+            //     ]
+            //     ])
+            ->add('class', EntityType::class, [
                 'label' => 'Categorías',
                 'placeholder' => 'Selecciona una ...',
-                'choices' =>[                
-                    'Lenguage' => ['PHP' => 'php'],
-                    'Framework' => [
-                        'Laravel' => 'laravel',
-                        'Symfony' => 'symfony'
-                    ]
-                ]
+                'class' => Category::class
             ])
+
             ->add('email', TextType::class, [
-                'label' => 'Email',
-                'help' => 'Debe contener mínimo 8 caracteres'
+            'label' => 'Email',
+            'help' => 'Debe contener mínimo 8 caracteres'
             ])
             ->add('message', TextareaType::class, [
                 'label' => 'Mensaje',
