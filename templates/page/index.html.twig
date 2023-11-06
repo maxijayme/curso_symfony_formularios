@@ -3,8 +3,24 @@
 {% block title %}Hello PageController!{% endblock %}
 
 {% block body %}
-
 <div class="example-wrapper">
-    <h1>Home</h1>
+
+    <div class='d-flex align-items-center justify-content-between'>
+        <h1>Posts</h1>
+        <a href= {{ path ('post_create') }} class='btn btn-dark btn-sm'>Create a new post</a>
+    </div>
+    <table class='table table-striped'>
+        <tbody>
+        {% for post in posts %}
+            <tr>
+                <td>{{ post.email}}</td>
+                <td>{{ post.message}}</td>
+                <td><a href={{ path ('post_edit', {id:post.id})}} class='btn btn-sm btn-primary'>editar<a/></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 </div>
+
 {% endblock %}
