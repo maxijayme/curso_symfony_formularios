@@ -5,7 +5,7 @@ namespace App\Form;
 use App\Entity\Post;
 use App\Entity\Category;
 
-use Doctrine\ORM\Mapping\Entity;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -32,10 +32,10 @@ class PostType extends AbstractType
             //         ]
             //     ]
             //     ])
-            ->add('class', EntityType::class, [
-                'label' => 'Categorías',
-                'placeholder' => 'Selecciona una ...',
-                'class' => Category::class
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'placeholder' => 'Seleccione una...',
+                'label' => 'Categorías'
             ])
 
             ->add('email', TextType::class, [
